@@ -1,11 +1,16 @@
 const express = require('express');
 const ytdl = require("ytdl-core");
+const cors = require("cors");
 const app = express();
 
 app.use(express.json());
 app.use(express.static("public"));
 
-app.get("/", function(request, response) {
+const corsOptions = {
+    origin: 'https://youtube-video-downloader-iota.vercel.app/',
+  }
+
+app.get("/", cors(corsOptions), function(request, response) {
     response.sendFile(__dirname + "public/index.html");
 });
 
